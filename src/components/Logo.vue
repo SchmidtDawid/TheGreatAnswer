@@ -14,5 +14,6 @@
     font-weight: 600;
     font-size: 24px;
     color: $black;
+    grid-area: logo;
   }
 </style>
