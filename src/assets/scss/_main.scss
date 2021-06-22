@@ -1,0 +1,39 @@
+.btn {
+  height: 36px;
+  background-color: $primary;
+  color: #fff;
+  border-radius: 4px;
+  border: 1px solid $primary;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: $primaryAccent;
+    border: 1px solid $primaryAccent;
+  }
+
+  &[disabled] {
+    background-color: $grey3;
+    border: 1px solid $grey3;
+    cursor: auto;
+  }
+
+  &.reversed {
+    height: 36px;
+    background-color: #fff;
+    color: $primary;
+
+    &:hover {
+      color: $primaryAccent;
+    }
+
+    &[disabled] {
+      color: $grey3;
+      border: 1px solid $grey3;
+      cursor: auto;
+    }
+  }
+}
