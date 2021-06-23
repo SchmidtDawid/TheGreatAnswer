@@ -17,7 +17,8 @@
     font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: $black
+    color: $black;
+    width: 100vw;
   }
 
   body {

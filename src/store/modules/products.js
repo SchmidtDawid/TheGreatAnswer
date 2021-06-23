@@ -1,22 +1,32 @@
-import Vue from 'vue';
 import ProductsApi from '@/api/ProductsApi';
 
 export default {
   state: {
-    products: {},
-  },
-  getters: {
-    getProducts: (state) => state.products,
+    items: {},
+    pagination: {},
+    params: {
+      search: null,
+      limit: 8,
+      page: 1,
+      active: null,
+      promo: null,
+    }
   },
   actions: {
-    async fetchProducts({ commit }, payload) {
-      const response = await ProductsApi.fetchProducts();
-      if (response.data?.items) {
-        commit('SET_PRODUCTS', response.data.items)
+    async fetchProducts({ commit, state }) {
+      const response = await ProductsApi.fetchProducts(state.params);
+      if (response.data) {
+        commit('SET_ITEMS', response.data.items);
+        commit('SET_PAGINATION', { ...response.data.links, ...response.data.meta });
       }
+    },
+    setParam({ commit, state }, payload) {
+      commit('SET_PARAM', payload)
     }
   },
   mutations: {
-    SET_PRODUCTS: (state, products) => state.products = products,
+    SET_ITEMS: (state, products) => state.items = products,
+    SET_PAGINATION: (state, pagination) => state.pagination = pagination,
+    SET_PARAM: (state, param) => state.params[param.name] = param.value,
   },
 };

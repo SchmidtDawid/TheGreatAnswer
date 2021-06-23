@@ -49,8 +49,20 @@
 
   .photo {
     position: relative;
+    flex: 0 0 45vw;
+    @media (min-width: $s) {
+      flex: 0 0 28vw;
+    }
+    @media (min-width: $l) {
+      flex: 0 0 180px;
+    }
+
+    overflow: hidden;
+    display: flex;
+    align-items: center;
     img {
       max-width: 100%;
+      object-fit: contain;
     }
     .promo {
       position: absolute;

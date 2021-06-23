@@ -36,3 +36,8 @@
     }
   }
 }
+
+.page-container {
+  max-width: $maxPageWidth;
+  margin: 0 auto;
+}

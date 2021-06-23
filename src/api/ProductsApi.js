@@ -1,7 +1,8 @@
 import Vue from 'vue';
+import queryString from 'query-string';
 
 export default {
-  fetchProducts() {
-    return Vue.axios.get('/products');
+  fetchProducts(params) {
+    return Vue.axios.get('/products?' + queryString.stringify(params));
   },
 };

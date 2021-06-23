@@ -1,9 +1,13 @@
 <template>
   <nav id="navigation">
-    <Logo />
-    <SearchBar />
-    <SearchFilters />
-    <UserWidget />
+    <div class="page-container">
+      <div class="wrapper">
+        <Logo />
+        <SearchBar />
+        <SearchFilters />
+        <UserWidget />
+      </div>
+    </div>
   </nav>
 </template>
 
@@ -35,11 +39,17 @@
   }
 
   #navigation {
+    background-color: #fff;
+  }
+
+  .wrapper {
+    max-width: $maxPageWidth;
+    margin: 0 auto;
     padding: 52px 24px 32px;
     display: grid;
     gap: 24px;
 
-    background-color: #fff;
+
     align-items: center;
 
     grid-template-columns: auto max-content;
@@ -50,7 +60,7 @@
 
     @media (min-width: $l){
       height: 144px;
-      padding: 0 90px;
+      padding: 0 108px;
       grid-template-columns: max-content 398px auto max-content;
       grid-template-areas: "logo search filters user";
     };
@@ -59,6 +69,7 @@
       grid-template-columns: max-content 50px 398px auto max-content;
       grid-template-areas: "logo . search filters user";
     };
+
   }
 
 
