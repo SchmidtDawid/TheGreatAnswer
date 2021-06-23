@@ -1,5 +1,5 @@
 .btn {
-  height: 36px;
+  min-height: 36px;
   background-color: $primary;
   color: #fff;
   border-radius: 4px;
@@ -22,7 +22,6 @@
   }
 
   &.reversed {
-    height: 36px;
     background-color: #fff;
     color: $primary;
 
