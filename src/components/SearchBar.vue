@@ -13,7 +13,10 @@
     methods: {
       ...mapActions(['setParam', 'fetchProducts']),
       setFilter(e) {
-        console.log(e);
+        this.setParam({
+          name: 'page',
+          value: 1
+        });
         this.setParam({
           name: 'search',
           value: e.target.value
@@ -29,25 +32,6 @@
 <style lang="scss" scoped>
   #search-bar {
     position: relative;
-  }
-
-  input {
-    background: #FFFFFF;
-    border: 1px solid #E0E2EA;
-    box-sizing: border-box;
-    border-radius: 8px;
-    height: 48px;
-    width: 100%;
-    padding: 0 48px 0 16px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-
-    &::placeholder {
-      color: $black;
-      font-size: 14px;
-      font-weight: 600;
-    }
   }
 
   .search {

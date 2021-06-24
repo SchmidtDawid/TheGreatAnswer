@@ -18,10 +18,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: $black;
-    width: 100vw;
+    width: 100vw; //właściwość do przedyskutowania
   }
 
   body {
     background-color: $mainBackground;
+    overflow-x: hidden;
   }
 </style>

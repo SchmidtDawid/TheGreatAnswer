@@ -2,13 +2,29 @@
   <div class="proucts">
     <Navigation />
     <div class="page-container">
-      <div class="products-grid">
+      <div v-if="products.items.length" class="products-grid">
         <product-item
             v-for="product in products.items"
             :key="product.id"
             :product="product"
         />
       </div>
+      <div v-else class="empty">
+        <img src="@/assets/icons/empty.svg" alt="no products">
+        <div class="title">
+          Ooops... It's empty here
+        </div>
+        <p>
+          There are no products on the list
+        </p>
+      </div>
+      <paginator
+        v-if="products.pagination.totalPages > 1"
+        :current-page="products.pagination.currentPage"
+        :total="products.pagination.totalPages"
+        :padding="2"
+        @set-page="setPage"
+      />
     </div>
   </div>
 </template>
@@ -18,9 +34,10 @@
   import Navigation from '@/components/Navigation';
   import { mapActions, mapState } from 'vuex';
   import ProductItem from '@/components/ProductItem';
+  import Paginator from '@/components/Paginator';
 
   export default {
-    components: { ProductItem, Navigation },
+    components: { Paginator, ProductItem, Navigation },
     data() {
       return {
         productss: {}
@@ -30,7 +47,14 @@
       ...mapState(['products'])
     },
     methods: {
-      ...mapActions(['fetchProducts'])
+      ...mapActions(['fetchProducts', 'setParam']),
+      setPage(page) {
+        this.setParam({
+          name: 'page',
+          value: page
+        });
+        this.fetchProducts()
+      }
     },
     created() {
       this.fetchProducts();
@@ -43,18 +67,47 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 24px;
-    padding: 24px;
+    margin: 24px;
     background-color: $mainBackground;
 
     @media (min-width: $s) {
       grid-template-columns: repeat(2, 1fr);
     }
     @media (min-width: $l) {
-      padding: 40px 108px;
+      margin: 56px 108px;
       grid-template-columns: repeat(3, 1fr);
     }
     @media (min-width: $xl) {
       grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .empty {
+    font-weight: 600;
+    background-color: #fff;
+    margin: 24px;
+    max-width: 600px;
+    padding: 118px 0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media (min-width: $l) {
+      margin: 56px auto;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    img {
+      margin: 22px;
+    }
+    .title {
+      font-size: 18px;
+    }
+    p {
+      font-size: 14px;
+      color: $grey3;
+      margin-top: 6px;
     }
   }
 </style>

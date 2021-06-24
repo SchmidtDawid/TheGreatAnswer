@@ -1,6 +1,7 @@
 <template>
   <div id="user-widget">
-    <button class="btn reversed">Log in</button>
+
+    <router-link to="/login"><button class="btn reversed">Log in</button></router-link>
   </div>
 </template>
 
