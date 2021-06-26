@@ -2,7 +2,7 @@ import ProductsApi from '@/api/ProductsApi';
 
 export default {
   state: {
-    items: {},
+    items: [],
     pagination: {},
     params: {
       search: null,
@@ -17,7 +17,7 @@ export default {
       const response = await ProductsApi.fetchProducts(state.params);
       if (response.data) {
         commit('SET_ITEMS', response.data.items);
-        commit('SET_PAGINATION', { ...response.data.links, ...response.data.meta });
+        commit('SET_PAGINATION', response.data.meta);
       }
     },
     setParam({ commit, state }, payload) {

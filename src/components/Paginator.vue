@@ -113,13 +113,14 @@
     display: flex;
     justify-content: center;
     margin: 52px 0;
-    gap: 16px;
+    gap: 4px;
     cursor: pointer;
 
     div {
+      text-align: center;
       font-weight: 600;
       font-size: 14px;
-      width: 8px;
+      width: 20px;
 
       &.active {
         color: $primary;
