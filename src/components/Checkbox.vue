@@ -1,11 +1,9 @@
 <template>
   <div class="tsh-checkbox" :class="{'checked': checked}" @click="setStatus">
-    <!--    <input class="tsh-checkbox" type="checkbox">-->
-    <!--    <label />-->
-    <div class="tsh-checkbox__input">
+    <div class="input">
       <img src="../assets/icons/check.svg" alt="">
     </div>
-    <div v-if="label" class="tsh-checkbox__label">
+    <div v-if="label" class="label">
       {{ label }}
     </div>
   </div>
@@ -37,7 +35,7 @@
     gap: 8px;
     cursor: pointer;
 
-    &__input {
+    .input {
       width: 24px;
       height: 24px;
       background: #fff;
@@ -54,13 +52,13 @@
       }
     }
 
-    &__label {
+    .label {
       font-size: 14px;
       font-weight: 600;
     }
 
     &.checked {
-      .tsh-checkbox__input {
+      .input {
         background-color: $primary;
         border-color: $primary;
 

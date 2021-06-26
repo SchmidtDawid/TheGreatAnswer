@@ -10,6 +10,7 @@
             @showDetails="showProduct"
         />
       </div>
+<!--      w sumie tu byłoby spoko zrobić komponent dla pustych wyszukiwań-->
       <div v-else class="empty">
         <img src="@/assets/icons/empty.svg" alt="no products">
         <div class="title">
@@ -67,9 +68,34 @@
       },
       closeModal() {
         this.modalProduct = {};
-      },
+      }
     },
     created() {
+      if (window.innerWidth < 1280) {
+        this.setParam({
+          name: 'limit',
+          value: 9
+        });
+      }
+
+      if (window.innerWidth < 1024) {
+        this.setParam({
+          name: 'limit',
+          value: 8
+        });
+      }
+
+      if (window.innerWidth < 568) {
+        this.setParam({
+          name: 'limit',
+          value: 4
+        });
+      }
+
+      // nie ma tu reakcji na resize (w większości projektów w jakich byłem zakładaliśmy, że user korzysta z wyjściowej
+      // szerokości urządzenia i jej nie zmienia. Jeśli projekt zakłada, takie zachowanie najlepiej zrobić by jakąś
+      // globalną mechnikę z breakpointami itd.)
+
       this.fetchProducts();
     }
   };
