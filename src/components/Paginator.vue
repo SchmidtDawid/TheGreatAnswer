@@ -49,7 +49,7 @@
     },
     computed: {
       lowDotsVisibility() {
-        return this.currentPage > this.padding + 2 && this.total > this.totalMidTiles;
+        return this.currentPage > this.padding + 1 && this.total > this.totalMidTiles;
       },
       highDotsVisibility() {
         return this.currentPage < (this.total - (this.padding + 1)) && this.total > this.totalMidTiles;
@@ -113,13 +113,14 @@
     display: flex;
     justify-content: center;
     margin: 52px 0;
-    gap: 16px;
+    gap: 8px;
     cursor: pointer;
 
     div {
+      text-align: center;
       font-weight: 600;
       font-size: 14px;
-      width: 8px;
+      min-width: 16px;
 
       &.active {
         color: $primary;
