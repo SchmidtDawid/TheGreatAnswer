@@ -2,7 +2,7 @@
   <div id="user-widget">
     <div class="user-avatar" v-if="user.isLogedIn">
       <img class="avatar" @click="dropdown = !dropdown" src="../assets/images/user-avatar.png" alt="">
-      <div class="dropdown" :class="{'active': dropdown}">
+      <div class="dropdown" v-show="dropdown">
         <div class="option" @click="logOutUser">Logout</div>
       </div>
     </div>
@@ -48,7 +48,6 @@
   }
 
   .dropdown {
-    display: none;
     position: absolute;
     background-color: #fff;
     border-radius: 4px;
@@ -58,10 +57,6 @@
     right: 0;
     bottom: -64px;
     cursor: pointer;
-
-    &.active {
-      display: block;
-    }
   }
 
   .avatar {
