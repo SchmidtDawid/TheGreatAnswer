@@ -65,8 +65,11 @@
   img {
     display: none;
     height: 100vh;
+    max-width: 35vw;
+    object-fit: cover;
     @media (min-width: $l) {
       display: block;
+      min-height: 768px;
     }
   }
 
@@ -95,7 +98,7 @@
     justify-content: center;
     height: 100%;
     @media (min-width: $l) {
-      width: 496px;
+      max-width: 496px;
     }
   }
 
