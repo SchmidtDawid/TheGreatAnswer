@@ -7,6 +7,7 @@
             v-for="product in products.items"
             :key="product.id"
             :product="product"
+            @showDetails="showProduct"
         />
       </div>
       <div v-else class="empty">
@@ -19,13 +20,18 @@
         </p>
       </div>
       <paginator
-        v-if="products.pagination.totalPages > 1"
-        :current-page="products.pagination.currentPage"
-        :total="products.pagination.totalPages"
-        :padding="2"
-        @set-page="setPage"
+          v-if="products.pagination.totalPages > 1"
+          :current-page="products.pagination.currentPage"
+          :total="products.pagination.totalPages"
+          :padding="2"
+          @set-page="setPage"
       />
     </div>
+    <product-modal
+        v-if="modalProduct.id"
+        :product="modalProduct"
+        @close="closeModal"
+    />
   </div>
 </template>
 
@@ -35,12 +41,13 @@
   import { mapActions, mapState } from 'vuex';
   import ProductItem from '@/components/ProductItem';
   import Paginator from '@/components/Paginator';
+  import ProductModal from '@/components/ProductModal';
 
   export default {
-    components: { Paginator, ProductItem, Navigation },
+    components: { ProductModal, Paginator, ProductItem, Navigation },
     data() {
       return {
-        productss: {}
+        modalProduct: {}
       };
     },
     computed: {
@@ -53,8 +60,14 @@
           name: 'page',
           value: page
         });
-        this.fetchProducts()
-      }
+        this.fetchProducts();
+      },
+      showProduct(product) {
+        this.modalProduct = product;
+      },
+      closeModal() {
+        this.modalProduct = {};
+      },
     },
     created() {
       this.fetchProducts();
@@ -101,9 +114,11 @@
     img {
       margin: 22px;
     }
+
     .title {
       font-size: 18px;
     }
+
     p {
       font-size: 14px;
       color: $grey3;

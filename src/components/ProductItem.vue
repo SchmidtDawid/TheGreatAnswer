@@ -9,7 +9,7 @@
       <p class="description">{{ product.description }}</p>
       <star-rating :rating="product.rating" />
 
-      <button v-if="product.active" class="btn">Show details</button>
+      <button v-if="product.active" class="btn" @click="showDetails">Show details</button>
       <button v-else disabled class="btn">Unavailable</button>
     </div>
   </div>
@@ -25,6 +25,11 @@
       product: {
         type: Object,
         required: true,
+      }
+    },
+    methods: {
+      showDetails() {
+        this.$emit('showDetails', this.product)
       }
     }
   };
